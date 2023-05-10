@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -10,6 +11,7 @@ import {
 import { TeamService } from './service/team.service';
 import { TeamCreateDto } from './dto/index.create-time-dto';
 
+@ApiTags('teams')
 @Controller('teams')
 export class TeamController {
   constructor(private readonly teamService: TeamService) {}
@@ -34,7 +36,7 @@ export class TeamController {
     } catch (error) {
       console.log(error);
       throw new HttpException(
-        'Ocorreu ao buscar os times',
+        'Ocorreu um erro ao buscar os times',
         HttpStatus.NOT_FOUND,
       );
     }
