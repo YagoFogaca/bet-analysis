@@ -17,4 +17,8 @@ export class TeamRepository {
   async findByName(name: string): Promise<Omit<ITeamEntity, 'games'>> {
     return await this.prismaServe.team.findFirst({ where: { name: name } });
   }
+
+  async delete(id: string): Promise<Omit<ITeamEntity, 'games'>> {
+    return await this.prismaServe.team.delete({ where: { id: id } });
+  }
 }

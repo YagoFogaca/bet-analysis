@@ -7,6 +7,7 @@ import {
   Post,
   Param,
   Get,
+  Delete,
 } from '@nestjs/common';
 import { TeamService } from './service/team.service';
 import { TeamCreateDto } from './dto/index.create-time-dto';
@@ -48,7 +49,23 @@ export class TeamController {
       return await this.teamService.findByName(name);
     } catch (error) {
       console.log(error);
-      throw new HttpException('Ocorreu ao buscar o time', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'Ocorreu um erro ao buscar o time',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+  }
+
+  @Delete('/:id')
+  async delete(@Param('id') id: string) {
+    try {
+      return await this.teamService.delete(id);
+    } catch (error) {
+      console.log(error);
+      throw new HttpException(
+        'Ocorreu um erro ao deletar o time',
+        HttpStatus.NOT_FOUND,
+      );
     }
   }
 }
