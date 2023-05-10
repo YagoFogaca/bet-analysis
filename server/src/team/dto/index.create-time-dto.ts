@@ -1,4 +1,4 @@
-export interface CreateDto {
+export interface TeamCreateDto {
   name: string;
 }
 // Pra criar preciso somente do name

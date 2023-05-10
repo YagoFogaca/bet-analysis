@@ -1,4 +1,4 @@
-export class TimeEntity {
+export class ITeamEntity {
   id: string;
   name: string;
   points: number;
