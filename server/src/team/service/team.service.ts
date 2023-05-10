@@ -15,7 +15,7 @@ export class TeamService {
     private readonly deleteNameUsecase: TeamDeleteUsecase,
   ) {}
 
-  async create(team: TeamCreateDto) {
+  async create(team: TeamCreateDto[]): Promise<string> {
     return await this.createUsecase.execute(team);
   }
 

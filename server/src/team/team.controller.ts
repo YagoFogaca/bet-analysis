@@ -1,4 +1,4 @@
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -18,13 +18,14 @@ export class TeamController {
   constructor(private readonly teamService: TeamService) {}
 
   @Post('/')
-  async create(@Body() team: TeamCreateDto) {
+  @ApiBody({ type: [TeamCreateDto] })
+  async create(@Body() team: TeamCreateDto[]) {
     try {
       return await this.teamService.create(team);
     } catch (error) {
       console.log(error);
       throw new HttpException(
-        'Ocorreu um erro ao criar o time',
+        'Ocorreu um erro ao criar os times',
         HttpStatus.BAD_REQUEST,
       );
     }

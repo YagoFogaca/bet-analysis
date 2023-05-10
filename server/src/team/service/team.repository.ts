@@ -6,8 +6,8 @@ import { ITeamEntity } from '../entities/index.entities';
 export class TeamRepository {
   constructor(private readonly prismaServe: PrismaService) {}
 
-  async create(team: Omit<ITeamEntity, 'games'>) {
-    return await this.prismaServe.team.create({ data: team });
+  async create(team: Omit<ITeamEntity, 'games'>[]) {
+    return await this.prismaServe.team.createMany({ data: team });
   }
 
   async findAll(): Promise<Omit<ITeamEntity, 'games'>[]> {
