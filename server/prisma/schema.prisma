@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Time {
+model Team {
   id             String @unique
   name           String
   points         Int
