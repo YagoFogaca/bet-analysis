@@ -16,7 +16,7 @@ export class TeamValidator {
   private red_cards: number = 0;
 
   constructor({ name }: TeamCreateDto) {
-    this.name = name.toUpperCase();
+    this.name = name.toLowerCase();
   }
 
   private validateName() {
