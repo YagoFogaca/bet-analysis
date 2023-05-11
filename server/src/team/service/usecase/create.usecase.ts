@@ -10,7 +10,9 @@ export class TeamCreateUsecase {
   async execute(teams: TeamCreateDto[]): Promise<string> {
     const teamsValidate = await Promise.all(
       teams.map(async (team) => {
-        const validateName = await this.teamRepository.findByName(team.name);
+        const validateName = await this.teamRepository.findByName(
+          team.name.toLowerCase(),
+        );
         if (validateName) {
           throw new Error('Time já registrado');
         }
@@ -20,7 +22,7 @@ export class TeamCreateUsecase {
     );
 
     const teamsCreated = await this.teamRepository.create(teamsValidate);
-    if (teamsCreated) {
+    if (!teamsCreated) {
       throw new Error('Ocorreu um erro ao criar os times');
     }
 

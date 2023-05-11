@@ -10,8 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Com o model dessa maneira, minha relação fica que quando um tive estiver jogando em casa (games_home) o jogo será inserido no relacionamento games_home, já quando for visitante será inserido no relacionamento games_visiting ?
 model Team {
-  id             String @unique
+  id             String  @unique
   name           String
   points         Int
   victory        Int
@@ -23,4 +24,28 @@ model Team {
   off_side       Int
   yellow_cards   Int
   red_cards      Int
+  games_home     games[] @relation("team_home")
+  games_visiting games[] @relation("team_visiting")
+}
+
+model games {
+  id                    String @unique
+  date                  String
+  round                 Int
+  results               String
+  corners_home          Int
+  corners_visiting      Int
+  goals_home            Int
+  goals_visiting        Int
+  yellow_cards_home     Int
+  yellow_cards_visiting Int
+  red_cards_home        Int
+  red_cards_visiting    Int
+  off_side_home         Int
+  off_side_visiting     Int
+
+  team_home        Team   @relation("team_home", fields: [id_team_home], references: [id])
+  team_visiting    Team   @relation("team_visiting", fields: [id_team_visiting], references: [id])
+  id_team_home     String
+  id_team_visiting String
 }

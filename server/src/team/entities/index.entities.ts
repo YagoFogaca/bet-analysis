@@ -1,3 +1,5 @@
+import { IGamesEntity } from 'src/games/entities/index.entities';
+
 export class ITeamEntity {
   id: string;
   name: string;
@@ -11,5 +13,6 @@ export class ITeamEntity {
   off_side: number;
   yellow_cards: number;
   red_cards: number;
-  games: [];
+  games_home: IGamesEntity[];
+  games_visiting: IGamesEntity[];
 }

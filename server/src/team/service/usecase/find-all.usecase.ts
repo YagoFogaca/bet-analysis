@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 export class TeamFindAllUsecase {
   constructor(private readonly teamRepository: TeamRepository) {}
 
-  async execute(): Promise<Omit<ITeamEntity, 'games'>[]> {
+  async execute(): Promise<ITeamEntity[]> {
     return await this.teamRepository.findAll();
   }
 }

@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 export class TeamFindByNameUsecase {
   constructor(private readonly teamRepository: TeamRepository) {}
 
-  async execute(name: string): Promise<Omit<ITeamEntity, 'games'>> {
+  async execute(name: string): Promise<ITeamEntity> {
     const team = await this.teamRepository.findByName(name);
     if (!team) {
       throw new Error('Time não registrado');
