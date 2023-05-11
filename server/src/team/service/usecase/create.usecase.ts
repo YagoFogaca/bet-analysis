@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { TeamCreateDto } from 'src/team/dto/index.create-time-dto';
+import { TeamCreateDto } from '../../dto/index.create-time-dto';
 import { TeamRepository } from 'src/team/service/team.repository';
-import { TeamValidator } from 'src/team/validator/index.validator';
+import { TeamValidator } from '../../validator/index.validator';
 
 @Injectable()
 export class TeamCreateUsecase {
