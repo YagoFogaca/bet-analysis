@@ -19,7 +19,7 @@ export class TeamService {
     return await this.createUsecase.execute(team);
   }
 
-  async findAll(): Promise<Omit<ITeamEntity, 'games'>[]> {
+  async findAll(): Promise<ITeamEntity[]> {
     return await this.findAllUsecase.execute();
   }
 
