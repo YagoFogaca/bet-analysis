@@ -4,38 +4,37 @@ import { ITeamEntity } from '../entities/index.entities';
 
 @Injectable()
 export class TeamRepository {
-  includes: { games_home: true; games_visiting: true };
+  config: { games_home: true; games_visiting: true };
   constructor(private readonly prismaServe: PrismaService) {}
 
   async create(team: Omit<ITeamEntity, 'games_home' | 'games_visiting'>[]) {
-    console.log(team);
     return await this.prismaServe.team.createMany({ data: team });
   }
 
-  async findAll(): Promise<ITeamEntity[]> {
-    return await this.prismaServe.team.findMany({
-      include: this.includes,
-    });
+  async findAll(): Promise<
+    Omit<ITeamEntity, 'games_home' | 'games_visiting'>[]
+  > {
+    return await this.prismaServe.team.findMany();
   }
 
   async findByName(name: string): Promise<ITeamEntity> {
     return await this.prismaServe.team.findFirst({
       where: { name: name },
-      include: this.includes,
+      include: { games_home: true, games_visiting: true },
     });
   }
 
   async findById(id: string): Promise<ITeamEntity> {
     return await this.prismaServe.team.findUnique({
       where: { id: id },
-      include: this.includes,
+      include: { games_home: true, games_visiting: true },
     });
   }
 
   async delete(id: string): Promise<ITeamEntity> {
     return await this.prismaServe.team.delete({
       where: { id: id },
-      include: this.includes,
+      include: { games_home: true, games_visiting: true },
     });
   }
 }
