@@ -18,6 +18,10 @@ export class GamesRepository {
     });
   }
 
+  async findById(id: string): Promise<IGamesEntity> {
+    return await this.prismaServe.games.findUnique({ where: { id: id } });
+  }
+
   async delete(id: string): Promise<IGamesEntity> {
     return await this.prismaServe.games.delete({ where: { id: id } });
   }
