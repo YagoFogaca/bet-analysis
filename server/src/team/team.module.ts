@@ -19,5 +19,6 @@ import { TeamController } from './team.controller';
     TeamDeleteUsecase,
     TeamService,
   ],
+  exports: [TeamRepository],
 })
 export class TeamsModule {}

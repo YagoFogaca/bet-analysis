@@ -1,8 +1,10 @@
+import { Injectable } from '@nestjs/common';
 import { GamesCreateDto } from 'src/games/dto/index.create-games-dto';
 import { GamesRepository } from '../games.repository';
 import { GameValidator } from 'src/games/validator/index.validator';
 import { TeamRepository } from 'src/team/service/team.repository';
 
+@Injectable()
 export class GamesCreateUsecase {
   constructor(
     private readonly gamesRepository: GamesRepository,

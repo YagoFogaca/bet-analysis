@@ -10,7 +10,6 @@ async function bootstrap() {
     .setTitle('BET-ANALYSIS')
     .setDescription('Documentação da BET-ANALYSIS')
     .setVersion('1.0')
-    .addTag('teams')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

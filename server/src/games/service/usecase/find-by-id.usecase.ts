@@ -1,6 +1,8 @@
+import { Injectable } from '@nestjs/common';
 import { IGamesEntity } from 'src/games/entities/index.entities';
 import { GamesRepository } from '../games.repository';
 
+@Injectable()
 export class GameFindById {
   constructor(private readonly gamesRepository: GamesRepository) {}
 

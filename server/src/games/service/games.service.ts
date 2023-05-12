@@ -1,9 +1,11 @@
+import { Injectable } from '@nestjs/common';
 import { GamesCreateUsecase } from './usecase/create.usecase';
 import { GameFindById } from './usecase/find-by-id.usecase';
 import { GameDeleteUsecase } from './usecase/delete.usecase';
 import { IGamesEntity } from '../entities/index.entities';
 import { GamesCreateDto } from '../dto/index.create-games-dto';
 
+@Injectable()
 export class GameService {
   constructor(
     private readonly createUsecase: GamesCreateUsecase,
