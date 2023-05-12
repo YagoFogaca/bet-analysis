@@ -25,6 +25,13 @@ export class TeamRepository {
     });
   }
 
+  async findById(id: string): Promise<ITeamEntity> {
+    return await this.prismaServe.team.findUnique({
+      where: { id: id },
+      include: this.includes,
+    });
+  }
+
   async delete(id: string): Promise<ITeamEntity> {
     return await this.prismaServe.team.delete({
       where: { id: id },
