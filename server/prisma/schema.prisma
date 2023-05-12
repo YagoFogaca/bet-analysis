@@ -11,8 +11,8 @@ datasource db {
 }
 
 // Com o model dessa maneira, minha relação fica que quando um tive estiver jogando em casa (games_home) o jogo será inserido no relacionamento games_home, já quando for visitante será inserido no relacionamento games_visiting ?
-model Team {
-  id             String  @unique
+model team {
+  id             String @unique
   name           String
   points         Int
   victory        Int
@@ -24,11 +24,11 @@ model Team {
   off_side       Int
   yellow_cards   Int
   red_cards      Int
-  games_home     games[] @relation("team_home")
-  games_visiting games[] @relation("team_visiting")
+  games_home     game[] @relation("team_home")
+  games_visiting game[] @relation("team_visiting")
 }
 
-model games {
+model game {
   id                    String @unique
   date                  String
   round                 Int
@@ -44,8 +44,8 @@ model games {
   off_side_home         Int
   off_side_visiting     Int
 
-  team_home        Team   @relation("team_home", fields: [id_team_home], references: [id])
-  team_visiting    Team   @relation("team_visiting", fields: [id_team_visiting], references: [id])
+  team_home        team   @relation("team_home", fields: [id_team_home], references: [id])
+  team_visiting    team   @relation("team_visiting", fields: [id_team_visiting], references: [id])
   id_team_home     String
   id_team_visiting String
 }
